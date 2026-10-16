@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="build" content="20261016103941">
+<title>Ledger · MECHAFOLIO</title>
+<meta name="description" content="Every $FOLIO fee, every stock buy and every daily Merkle root, linked to Robinhood Chain.">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:title" content="Ledger · MECHAFOLIO"><meta property="og:image" content="https://mechafolio.xyz/assets/art/og.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/brand/mark.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=20261016103941"><link rel="stylesheet" href="css/landing.css?v=20261016103941"><link rel="stylesheet" href="css/app.css?v=20261016103941"><link rel="stylesheet" href="css/pages.css?v=20261016103941">
+</head>
+<body class="app plate" data-theme="cockpit">
+<main class="page">
+  <header class="page-h">
+    <p class="kicker">The Ledger</p>
+    <h1>Fees in. Stocks out.<br><span class="dim">Every step on chain.</span></h1>
+    <p class="lede-s">Read straight from the contracts every 15 seconds. No wallet needed. Every number links to Robinhood Chain.</p>
+  </header>
+
+  <section class="stats" id="stats">
+    <div class="hud stat"><span class="k">Fees harvested</span><strong class="mono" id="sEth">—</strong><em id="sEthUsd">—</em></div>
+    <div class="hud stat"><span class="k">Stocks bought</span><strong class="mono" id="sBought">—</strong><em>at today's prices</em></div>
+    <div class="hud stat"><span class="k">Claimed by pilots</span><strong class="mono" id="sClaimed">—</strong><em id="sClaimedPct">—</em></div>
+    <div class="hud stat"><span class="k">Harvests</span><strong class="mono" id="sN">—</strong><em id="sOps">—</em></div>
+  </section>
+
+  <section class="grid2">
+    <div class="hud">
+      <div class="panel-h"><h2>Stocks held for pilots</h2><span class="tag-pill live" id="distTag">FolioDistributor</span></div>
+      <div class="scroll-x"><table class="grid" id="stocks"><thead><tr><th>Part · stock</th><th class="r">Bought</th><th class="r">Claimed</th><th class="r">Waiting</th><th class="r">Worth</th><th>Route</th></tr></thead><tbody></tbody></table></div>
+    </div>
+    <div class="hud">
+      <div class="panel-h"><h2>Merkle root</h2><span class="tag-pill" id="rootTag">—</span></div>
+      <div class="panel-b">
+        <div class="kv">
+          <span class="k">Active epoch</span><span class="v mono" id="rEpoch">—</span>
+          <span class="k">Active root</span><span class="v mono" id="rRoot">—</span>
+          <span class="k">Pending root</span><span class="v mono" id="rPend">—</span>
+          <span class="k">Becomes active</span><span class="v mono" id="rAt">—</span>
+          <span class="k">Public check window</span><span class="v mono" id="rDelay">—</span>
+        </div>
+        <p class="fine">Each new root waits in public before anyone can claim against it. The full list of every pilot's amounts is published at the link of each epoch below.</p>
+      </div>
+      <div class="panel-h"><h3>Today's buy weights</h3><span class="mono dim">from pilots' loadouts</span></div>
+      <div class="panel-b weights" id="weights"></div>
+    </div>
+  </section>
+
+  <section class="hud">
+    <div class="panel-h"><h2>Harvests</h2><span class="mono dim">FolioEngine · Harvested events</span></div>
+    <div class="scroll-x"><table class="grid" id="harvests"><thead><tr><th>#</th><th>Block</th><th class="r">ETH in</th><th class="r">Ops</th><th class="r">Swapped</th><th>Bought</th><th>Tx</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="grid2">
+    <div class="hud">
+      <div class="panel-h"><h2>Daily epochs</h2><span class="mono dim">00:00 UTC</span></div>
+      <div class="scroll-x"><table class="grid" id="epochs"><thead><tr><th>Day</th><th class="r">Pilots</th><th>Root</th><th>Full list</th></tr></thead><tbody></tbody></table></div>
+    </div>
+    <div class="hud">
+      <div class="panel-h"><h2>Contracts</h2><span class="tag-pill">Robinhood Chain · 4663</span></div>
+      <div class="panel-b contracts" id="contracts"></div>
+      <div class="panel-h"><h3>What the owner can and cannot do</h3></div>
+      <div class="panel-b">
+        <ul class="can">
+          <li class="no">Cannot withdraw fees, WETH or stocks to any wallet.</li>
+          <li class="no">Cannot route swaps through anything but official Uniswap v3 pools (checked on chain).</li>
+          <li class="no">Cannot raise the operations cut above 10%.</li>
+          <li class="no">Cannot make a new root claimable without the public waiting period.</li>
+          <li class="yes">Can cancel a root during its waiting period if it is wrong.</li>
+          <li class="yes">Can repair a swap route, set the keeper and the operations wallet.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+<script type="module" src="js/livewatch.js?v=20261016103941"></script>
+<script type="module" src="js/ledger.js?v=20261016103941"></script>
+</body>
+</html>

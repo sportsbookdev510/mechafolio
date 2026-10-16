@@ -1,0 +1,66 @@
+/* Cockpit v2 (16 Okt): tambahan di atas landing.css — bab Trust, petunjuk gulir, kinerja, HP. */
+
+/* kinerja: backdrop-filter di atas kanvas WebGL yang bergerak dihitung ulang tiap frame (mahal) → panel padat */
+body.landing .hud, body.landing .top, body.landing .dock, body.landing .tag, body.landing .menu { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+body.landing[data-theme="cockpit"] .hud { background: rgba(8, 13, 24, .86); }
+body.landing[data-theme="cockpit"] .top, body.landing[data-theme="cockpit"] .dock { background: rgba(7, 11, 20, .9); }
+body.landing .tag { background: rgba(6, 11, 22, .92); }
+body.landing .menu { background: rgba(5, 9, 18, .95); }
+
+/* judul */
+.hero-h { font-size: clamp(36px, 4.2vw, 64px); line-height: 1.02; text-wrap: balance; }
+.scroll-hint { position: absolute; left: 50%; bottom: 82px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--hero-dim); }
+.scroll-hint i { width: 1.5px; height: 34px; background: var(--hud-line); position: relative; overflow: hidden; }
+.scroll-hint i::after { content: ''; position: absolute; left: 0; right: 0; height: 40%; background: var(--accent); animation: drop 1.6s infinite; }
+@keyframes drop { from { top: -40%; } to { top: 100%; } }
+
+/* duel */
+.duel-sub { margin: 0; font-size: 14px; color: var(--hud-dim); line-height: 1.5; }
+
+/* 06 Trust */
+.trust-wrap { position: absolute; left: var(--gutter); right: calc(var(--gutter) + 8px); bottom: 96px; }
+.trust-h { color: var(--hero-color); margin-bottom: 16px; text-shadow: 0 2px 18px rgba(4, 9, 18, .55); }
+.trust-h h2 { margin: 0; font: var(--display-w) clamp(28px, 3vw, 44px)/1.04 var(--display); }
+.trust-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.trust-cols .hud { padding: 18px 20px; }
+.trust-cols h3 { margin: 0; font: 700 16px/1.2 var(--f-display); letter-spacing: .04em; text-transform: uppercase; }
+.can { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+.can li { position: relative; padding-left: 26px; font-size: 14px; line-height: 1.5; color: #c9d6ec; }
+.can li::before { position: absolute; left: 0; top: 1px; width: 17px; height: 17px; display: grid; place-items: center; font: 700 10.5px/1 var(--f-mono); }
+.can li.ok::before { content: '✓'; color: #34d27b; border: 1px solid rgba(52, 210, 123, .45); }
+.can li.wait::before { content: '!'; color: #f2c230; border: 1px solid rgba(242, 194, 48, .5); }
+.trust-links { display: flex; gap: 8px; margin-top: 14px; }
+body.landing .btn-ghost { --fg: var(--hud-text); }
+
+@media (max-width: 820px) {
+  .scroll-hint { display: none; }
+  /* keterbacaan di atas langit terang: judul bab diberi alas gelap tipis */
+  .hero-copy .eyebrow { color: #dfe8f7; text-shadow: 0 1px 3px rgba(0, 0, 0, .7); }
+  .ch-flow .block-copy, .trust-h { padding: 12px 14px; background: rgba(6, 10, 20, .84); border-left: 3px solid var(--accent); }
+  .ch-flow .block-copy h2 { font-size: 24px; margin-bottom: 0; }
+  .ch-flow .block-copy .kicker, .trust-h .kicker { margin-bottom: 6px; }
+  .sb-time { display: none; }
+  .sb-mid { padding: 0 12px; }
+  .hero-h { font-size: 33px; }
+  .pipeline span { font-size: 11.5px; line-height: 1.4; }
+  .pipeline strong { font-size: 16px; }
+  .pipeline em { display: none; }
+  .duel-sub { display: none; }
+  .trust-wrap { left: 16px; right: 16px; bottom: 80px; }
+  .trust-h { margin-bottom: 10px; }
+  .trust-h h2 { font-size: 24px; }
+  .trust-cols { grid-template-columns: 1fr; gap: 8px; }
+  .trust-cols .hud { padding: 12px 14px; }
+  .trust-cols h3 { font-size: 13px; }
+  .can { gap: 6px; margin-top: 8px; }
+  .can li { font-size: 12px; padding-left: 22px; }
+  .can li::before { width: 15px; height: 15px; }
+  .trust-links { display: none; }
+}
+/* HP layar pendek (mis. 360×760): kotak 4 langkah dirapatkan supaya tidak terpotong panel harga */
+@media (max-width: 820px) and (max-height: 820px) {
+  .pipeline li { padding: 8px 10px; gap: 4px; }
+  .pipeline span { font-size: 11px; line-height: 1.35; }
+  .pipeline strong { font-size: 14.5px; }
+  .ch-flow .block-copy h2 { font-size: 21px; }
+}

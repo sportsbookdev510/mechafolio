@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="build" content="20261016103941">
+<title>Arena · MECHAFOLIO</title>
+<meta name="description" content="Daily MECHAFOLIO duels at 20:00 UTC. Every part hits as hard as its real stock moved that day. Replays, standings and class champions.">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:title" content="Arena · MECHAFOLIO"><meta property="og:image" content="https://mechafolio.xyz/assets/art/og.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/brand/mark.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=20261016103941"><link rel="stylesheet" href="css/landing.css?v=20261016103941"><link rel="stylesheet" href="css/app.css?v=20261016103941"><link rel="stylesheet" href="css/arena.css?v=20261016103941">
+<script type="importmap">{ "imports": { "three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/" } }</script>
+</head>
+<body class="app arena" data-theme="cockpit">
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<main class="ar">
+  <div class="scoreboard hud" id="sb">
+    <div class="sb-side l"><span class="sb-name mono" id="sbA">—</span><span class="sb-sub" id="sbAc">—</span><div class="hp"><i id="hpA"></i></div></div>
+    <div class="sb-mid"><span class="sb-vs">VS</span><span class="sb-time mono" id="sbInfo">—</span></div>
+    <div class="sb-side r"><span class="sb-name mono" id="sbB">—</span><span class="sb-sub" id="sbBc">—</span><div class="hp"><i id="hpB"></i></div></div>
+  </div>
+
+  <section class="col col-l">
+    <div class="hud">
+      <div class="panel-h"><h2>Champions</h2><select class="input day-sel" id="daySel" aria-label="Duel day"></select></div>
+      <div class="panel-b champs" id="champs"></div>
+    </div>
+    <div class="hud standings">
+      <div class="panel-h"><h2>Standings</h2><span class="mono dim" id="stCount">—</span></div>
+      <div class="scroll"><table class="grid" id="standings"><thead><tr><th>#</th><th>Pilot</th><th>Class</th><th class="r">W–L</th><th class="r">Dmg</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="col col-r">
+    <div class="hud matches">
+      <div class="panel-h"><h2>Matches</h2><input class="input" id="mFilter" placeholder="Filter 0x…" spellcheck="false" autocomplete="off"></div>
+      <div class="scroll"><ul class="mlist" id="mlist"></ul></div>
+    </div>
+    <div class="hud moves">
+      <div class="panel-h"><h3>Stock moves used</h3><span class="mono dim" id="movesAt">—</span></div>
+      <div class="panel-b mv" id="moves"></div>
+    </div>
+  </section>
+
+  <div class="player hud" id="player">
+    <button class="pl-btn" id="plPlay" aria-label="Play">▶</button>
+    <input type="range" id="plSeek" min="0" max="1000" value="0" aria-label="Replay position">
+    <span class="pl-log mono" id="plLog">Pick a match to replay.</span>
+  </div>
+</main>
+
+<script type="module" src="js/livewatch.js?v=20261016103941"></script>
+<script type="module" src="js/arena.js?v=20261016103941"></script>
+</body>
+</html>

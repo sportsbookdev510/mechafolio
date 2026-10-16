@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="build" content="20261016103941">
+<title>Hangar · MECHAFOLIO</title>
+<meta name="description" content="Your MECHAFOLIO frame: its class, its eight stock-filled parts, and the tokenized stocks you can claim on Robinhood Chain.">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:title" content="Hangar · MECHAFOLIO"><meta property="og:image" content="https://mechafolio.xyz/assets/art/og.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/brand/mark.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=20261016103941"><link rel="stylesheet" href="css/landing.css?v=20261016103941"><link rel="stylesheet" href="css/app.css?v=20261016103941"><link rel="stylesheet" href="css/hangar.css?v=20261016103941">
+<script type="importmap">{ "imports": { "three": "./vendor/three/three.module.min.js", "three/addons/": "./vendor/three/addons/" } }</script>
+</head>
+<body class="app hangar" data-theme="cockpit">
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="veil" aria-hidden="true"></div>
+
+<main class="hg">
+  <!-- kiri: pilot + loadout -->
+  <section class="col col-l">
+    <div class="hud pilot" id="pilot">
+      <div class="panel-h"><h2>Pilot</h2><span class="tag-pill" id="pilotTag">No wallet</span></div>
+      <div class="panel-b">
+        <div class="who">
+          <span class="mono" id="pilotAddr">—</span>
+          <form class="lookup" id="lookup"><input class="input" id="lookupIn" placeholder="View any wallet 0x…" spellcheck="false" autocomplete="off"><button class="btn btn-ghost btn-sm" type="submit">View</button></form>
+        </div>
+        <div class="frame-line"><span class="cls" id="pilotCls">—</span><span class="mono dim" id="pilotHeight">—</span></div>
+        <div class="kv" id="pilotKv">
+          <span class="k">$FOLIO held</span><span class="v mono" id="kvBal">—</span>
+          <span class="k">Share of supply</span><span class="v mono" id="kvShare">—</span>
+          <span class="k">Rank</span><span class="v mono" id="kvRank">—</span>
+          <span class="k">Streak</span><span class="v mono" id="kvStreak">—</span>
+          <span class="k">Counts today</span><span class="v mono" id="kvMin">—</span>
+          <span class="k">Last duel</span><span class="v mono" id="kvDuel">—</span>
+        </div>
+        <p class="fine" id="pilotNote">Connect a wallet, or paste any address to look around. Nothing here needs a transaction.</p>
+      </div>
+    </div>
+
+    <div class="hud loadout" id="loadout">
+      <div class="panel-h"><h2>Loadout</h2><span class="mono dim" id="ldSum">100%</span></div>
+      <div class="panel-b">
+        <p class="fine ld-intro">Where your share of each day's buys goes. The engine buys more of what pilots pick. Signing is free.</p>
+        <div class="ld-rows" id="ldRows"></div>
+        <div class="ld-actions">
+          <button class="btn btn-ghost btn-sm" id="ldEqual" type="button">Equal</button>
+          <button class="btn btn-accent btn-sm" id="ldSave" type="button">Sign loadout</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- kanan: bagian & klaim -->
+  <section class="col col-r">
+    <div class="hud parts" id="parts">
+      <div class="panel-h"><h2>Parts · stocks</h2><span class="tag-pill" id="rootTag">Epoch —</span></div>
+      <table class="grid" id="partsTable">
+        <thead><tr><th>Part</th><th class="r">Allocated</th><th class="r">Claimable</th><th class="r">Worth</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="claim-bar">
+        <div><span class="k">Claimable now</span><strong class="mono" id="claimUsd">$0.00</strong></div>
+        <button class="btn btn-accent" id="claimBtn" disabled>Claim stocks</button>
+      </div>
+      <p class="fine claim-note" id="claimNote">Stocks are split daily at 00:00 UTC and become claimable after a 6-hour public check. Nothing expires.</p>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="js/livewatch.js?v=20261016103941"></script>
+<script type="module" src="js/hangar.js?v=20261016103941"></script>
+</body>
+</html>

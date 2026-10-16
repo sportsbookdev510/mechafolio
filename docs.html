@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="build" content="20261016103941">
+<title>Docs · MECHAFOLIO</title>
+<meta name="description" content="How MECHAFOLIO works: frames, stock-filled parts, loadouts, daily splits, claims, the Arena, the contracts and the risks.">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:title" content="Docs · MECHAFOLIO"><meta property="og:image" content="https://mechafolio.xyz/assets/art/og.jpg"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/brand/mark.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css?v=20261016103941"><link rel="stylesheet" href="css/landing.css?v=20261016103941"><link rel="stylesheet" href="css/app.css?v=20261016103941"><link rel="stylesheet" href="css/pages.css?v=20261016103941">
+</head>
+<body class="app plate" data-theme="cockpit">
+<main class="page">
+  <header class="page-h">
+    <p class="kicker">Docs</p>
+    <h1>How MECHAFOLIO works</h1>
+    <p class="lede-s">Hold $FOLIO, pilot a mech, collect real tokenized stocks. Everything below is how the contracts and the server actually behave.</p>
+  </header>
+
+  <div class="docs-wrap">
+    <nav class="toc hud" id="toc">
+      <a href="#what">What it is</a><a href="#frame">Your frame</a><a href="#parts">Parts are stocks</a><a href="#loadout">Loadout</a>
+      <a href="#fees">Fees → stocks</a><a href="#split">Daily split</a><a href="#claim">Claiming</a><a href="#arena">The Arena</a>
+      <a href="#trust">Contracts & trust</a><a href="#risks">Risks</a><a href="#faq">FAQ</a><a href="#links">Official links</a>
+    </nav>
+
+    <article class="doc hud">
+      <section id="what">
+        <h2>What it is</h2>
+        <p><b>MECHAFOLIO</b> is a game on Robinhood Chain. Every wallet that holds <b>$FOLIO</b> pilots a giant mech. The mech has eight parts, and each part is filled with a <b>real tokenized stock</b> issued on Robinhood Chain: NVIDIA, Tesla, SpaceX, a US Treasury bill ETF, Apple, Meta, Strategy and Microsoft.</p>
+        <p>Trading fees from $FOLIO buy those stocks every hour. Each day the stocks are split between pilots, and pilots claim them straight to their wallet. Every evening the mechs duel, and how hard each part hits depends on how its stock moved that day.</p>
+      </section>
+
+      <section id="frame">
+        <h2>Your frame</h2>
+        <p>Your share of the $FOLIO supply sets your frame class and height. Bigger frames take a bigger part of each day's split, in proportion to what you hold.</p>
+        <table class="grid"><thead><tr><th>Class</th><th>Share of supply</th><th class="r">Height</th></tr></thead><tbody>
+          <tr><td>Scout</td><td>below 0.05%</td><td class="r mono">11.2 m</td></tr>
+          <tr><td>Striker</td><td>0.05% and up</td><td class="r mono">13.3 m</td></tr>
+          <tr><td>Brawler</td><td>0.2% and up</td><td class="r mono">15.5 m</td></tr>
+          <tr><td>Titan</td><td>0.5% and up</td><td class="r mono">18.0 m</td></tr>
+          <tr><td>Colossus</td><td>1% and up</td><td class="r mono">20.9 m</td></tr>
+        </tbody></table>
+        <p>To count as a pilot you need at least <b>1,000 $FOLIO</b> held through a full UTC day.</p>
+      </section>
+
+      <section id="parts">
+        <h2>Parts are real stocks</h2>
+        <p>Each part is one stock token on Robinhood Chain. These are third-party tokens issued by Robinhood; MECHAFOLIO only buys them on Uniswap and passes them on.</p>
+        <table class="grid" id="partsTbl"><thead><tr><th>Part</th><th>Stock</th><th>Role in a duel</th></tr></thead><tbody></tbody></table>
+        <div class="note">The issuer's token contract can pause all transfers and can block specific addresses. If that happens, the affected part simply waits: the rest of your claim still goes through, and the waiting part can be claimed once transfers resume.</div>
+      </section>
+
+      <section id="loadout">
+        <h2>Loadout</h2>
+        <p>Your loadout says how your share of each day's buys is spread across the eight stocks. The default is equal. Change it in the <a class="ext" href="/hangar">Hangar</a> by moving the sliders and signing a message with your wallet. Signing is free: no transaction, no gas.</p>
+        <p>The engine buys stocks in the proportions that all pilots asked for, weighted by how much each pilot holds. Your loadout also decides which parts hit hardest in the Arena.</p>
+      </section>
+
+      <section id="fees">
+        <h2>Fees → stocks</h2>
+        <ol>
+          <li>Every $FOLIO buy and sell on Pons pays a <b>3% creator tax</b>. The creator share of Pons' own 1% base fee comes along with it. Both go to the <b>FolioEngine</b> contract, not to a team wallet.</li>
+          <li>About once an hour a keeper calls <code>harvest()</code>. The engine pulls the fees from Pons, sends <b>5% to operations</b> (capped at 10% in the contract), and swaps the rest on Uniswap v3 into the eight stocks.</li>
+          <li>The stocks go straight from the pool to the <b>FolioDistributor</b> contract. They never pass through a team wallet.</li>
+        </ol>
+        <p>If one stock can't be bought at a fair price (or its token is paused), that slot is skipped and its ETH waits for the next harvest. The other seven are still bought.</p>
+      </section>
+
+      <section id="split">
+        <h2>Daily split</h2>
+        <p>Each UTC day closes at 00:00 UTC. The stocks bought since the last split are shared out:</p>
+        <ul>
+          <li><b>90% to pilots</b>, by weight. Your weight is the <b>lowest</b> $FOLIO balance you held during the day, so buying in for an hour and leaving does nothing.</li>
+          <li><b>Streak bonus:</b> +5% weight for every day in a row you stay a pilot, up to +50%.</li>
+          <li><b>Whale cap:</b> one wallet can take at most 10% of a day's split. Anything above the cap is not handed to others; it rolls into the next day.</li>
+          <li><b>10% to the Arena champions</b> of that day (see below). If no class had a champion, it rolls over too.</li>
+        </ul>
+        <p>New wallets start counting on the first full day they hold.</p>
+      </section>
+
+      <section id="claim">
+        <h2>Claiming</h2>
+        <p>After each split the server publishes one Merkle root on chain, with the full list of every pilot's running total. The root waits <b>6 hours in public</b> before it becomes claimable. During that window anyone can check the list (linked on the <a class="ext" href="/ledger">Ledger</a>), and the owner can cancel a wrong root.</p>
+        <p>Then you press <b>Claim</b> in the Hangar. One transaction sends every stock you're owed to your wallet. Totals are cumulative, so you can claim daily, weekly or once a year. <b>Nothing expires.</b> Anyone can trigger a claim for any wallet; the stocks always go to that wallet.</p>
+      </section>
+
+      <section id="arena">
+        <h2>The Arena</h2>
+        <p>Every day at <b>20:00 UTC</b> the mechs duel inside their own class. Each pilot fights up to three others. Free to enter, no wagers.</p>
+        <ul>
+          <li>Each part's power is your loadout weight for it times that stock's 24-hour move ×10, held between ×0.5 and ×1.5.</li>
+          <li>Attack comes from the AI Core, Breaker Fist and Rail Cannon; power from the Reactor; speed from the Boosters; defense from Armor, Sensors and Actuators.</li>
+          <li>The match seed is the latest Robinhood Chain block hash at duel time, so anyone can replay every duel exactly.</li>
+          <li>The best record in each class (two or more pilots) is that class's champion. Champions share the day's 10% Arena pool.</li>
+        </ul>
+      </section>
+
+      <section id="trust">
+        <h2>Contracts & trust</h2>
+        <p>Two contracts hold everything. Both are verified on the explorer and listed on the <a class="ext" href="/ledger">Ledger</a>.</p>
+        <ul>
+          <li><b>FolioEngine</b> receives the fees and buys stocks. It has no function that sends ETH, WETH or stocks to any wallet. Swap routes must be official Uniswap v3 pools, checked on chain.</li>
+          <li><b>FolioDistributor</b> holds the stocks and pays claims against the active root. A new root always waits out the public window.</li>
+        </ul>
+        <p>What still needs trust: the server that computes each day's split and the keeper that harvests. Both are checkable: the full list for every day is public, and the rules on this page are applied the same way to everyone.</p>
+      </section>
+
+      <section id="risks">
+        <h2>Risks</h2>
+        <ul>
+          <li><b>$FOLIO is a memecoin</b> with no intrinsic value. Its price can fall to zero, and the stocks it buys depend on trading activity that can dry up.</li>
+          <li><b>Stock tokens are third-party assets.</b> Their issuer can pause them, block addresses or change them under its own terms. MECHAFOLIO is not affiliated with Robinhood, Pons, Uniswap or any company named here.</li>
+          <li><b>Smart contracts can have bugs.</b> The contracts are tested against a copy of the live chain, but they are not audited by a third party.</li>
+          <li><b>Nothing here is financial advice</b> or an offer of securities. Check that holding these tokens is allowed where you live.</li>
+        </ul>
+      </section>
+
+      <section id="faq">
+        <h2>FAQ</h2>
+        <details class="faq"><summary>Do I need to do anything every day?</summary><p>No. Just hold. Your share is recorded every day and adds up until you claim.</p></details>
+        <details class="faq"><summary>What happens if I sell some $FOLIO?</summary><p>That day counts on your lowest balance, and your streak resets if you drop below 1,000 $FOLIO. Anything already allocated to you stays yours.</p></details>
+        <details class="faq"><summary>Which wallets work?</summary><p>Any wallet that supports Robinhood Chain (chain ID 4663): MetaMask, Rabby, Phantom (turn on Robinhood Chain in Settings → Active Networks) and others.</p></details>
+        <details class="faq"><summary>Why are amounts so small at first?</summary><p>Stocks are bought from fees, so early amounts follow early volume. A $1,000 trade pays about $30 in tax, which is split between all pilots.</p></details>
+        <details class="faq"><summary>Can the team take the stocks?</summary><p>Not through the contracts: there is no withdraw function for stocks, ETH or WETH. The only way stocks leave is a claim against a public root.</p></details>
+      </section>
+
+      <section id="links">
+        <h2>Official links</h2>
+        <p>X: <a class="ext" href="https://x.com/mechafolio" target="_blank" rel="noopener">@mechafolio</a> · Site: <a class="ext" href="/">mechafolio.xyz</a></p>
+        <p>Contract address: <code data-ca-text>drops at launch</code>. Only trust the address shown on this site and pinned on our X.</p>
+      </section>
+    </article>
+  </div>
+</main>
+<script type="module" src="js/livewatch.js?v=20261016103941"></script>
+<script type="module">
+  import { mountShell } from './js/shell.js';
+  import { SLOTS, CHAIN } from './js/config.js';
+  mountShell('docs');
+  document.querySelector('#partsTbl tbody').innerHTML = SLOTS.map(s => `<tr><td><i class="sw" style="--co:${s.color}"></i>${s.part}</td><td><b>${s.ticker}</b> · ${s.name}<br><a class="ext mono" href="${CHAIN.explorer}/token/${s.token}" target="_blank" rel="noopener">${s.token.slice(0, 10)}…${s.token.slice(-6)}</a></td><td>${s.role}</td></tr>`).join('');
+  // sorot bagian yang sedang dibaca di daftar isi
+  const links = [...document.querySelectorAll('#toc a')];
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id)); }), { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('.doc section').forEach(s => io.observe(s));
+</script>
+</body>
+</html>

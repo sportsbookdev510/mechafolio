@@ -1,0 +1,38 @@
+/* Arena: panggung duel 3D di tengah, juara+klasemen kiri, daftar duel kanan, pemutar bawah */
+.ar { position: relative; z-index: 6; min-height: 100vh; padding: 76px var(--gutter) 150px; display: flex; justify-content: space-between; pointer-events: none; }
+.ar .col { display: flex; flex-direction: column; gap: 14px; width: 340px; max-height: calc(100vh - 240px); pointer-events: auto; margin-top: 74px; }
+.ar .scoreboard { position: fixed; left: 0; right: 0; margin: 0 auto; top: 72px; width: min(640px, calc(100vw - 2 * var(--gutter) - 2 * 350px)); z-index: 8; display: grid; grid-template-columns: 1fr auto 1fr; pointer-events: auto; }
+.ar .sb-name { font-size: 15px; }
+.day-sel { height: 30px; padding: 0 8px; font-size: 12px; }
+.champs { display: grid; gap: 8px; }
+.champ { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 8px 10px; background: var(--hud-bg-2); border-left: 3px solid #f2c230; cursor: pointer; }
+.champ b { font: 700 11px/1 var(--f-display); letter-spacing: .12em; text-transform: uppercase; color: #f2c230; }
+.champ span { font: 500 13px/1 var(--f-mono); }
+.champ em { font-style: normal; font: 500 12px/1 var(--f-mono); color: var(--hud-dim); }
+.standings, .matches { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+.scroll { overflow: auto; min-height: 0; flex: 1; }
+.mlist { list-style: none; margin: 0; padding: 0; }
+.mlist li { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; padding: 9px 12px; border-bottom: 1px solid var(--hud-line-2); cursor: pointer; font: 500 12px/1.2 var(--f-mono); }
+.mlist li:hover { background: var(--hud-line-2); }
+.mlist li.on { background: rgba(79, 227, 255, .1); box-shadow: inset 3px 0 0 var(--accent); }
+.mlist li .w { color: #fff; font-weight: 600; }
+.mlist li .x { color: var(--hud-dim); font-size: 10px; text-align: center; font-family: var(--f-display); letter-spacing: .12em; }
+.mlist li span:last-child { text-align: right; }
+.mlist li .lose { color: var(--hud-dim); }
+.mlist .cls-h { display: block; padding: 8px 12px 6px; background: var(--hud-bg-2); color: var(--hud-dim); font: 600 10px/1 var(--f-display); letter-spacing: .14em; text-transform: uppercase; cursor: default; }
+.mv { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 12px; }
+.mv div { display: flex; justify-content: space-between; font: 500 12px/1 var(--f-mono); }
+.player { position: fixed; left: 0; right: 0; bottom: 78px; margin: 0 auto; width: min(620px, calc(100vw - 2 * var(--gutter) - 2 * 360px)); z-index: 8; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; align-items: center; padding: 10px 14px; pointer-events: auto; }
+.pl-btn { width: 38px; height: 38px; border: 0; background: var(--accent); color: var(--accent-ink); font-size: 15px; cursor: pointer; }
+#plSeek { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent) var(--p, 0%), var(--hud-line-2) var(--p, 0%)); outline: none; }
+#plSeek::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 18px; background: #fff; }
+.pl-log { grid-column: 1 / -1; font-size: 12.5px; color: var(--hud-dim); min-height: 16px; }
+@media (max-width: 1100px) { .ar .col { width: 290px; } }
+@media (max-width: 860px) {
+  .player, .ar .scoreboard { width: calc(100vw - 24px); }
+  .ar { flex-direction: column; padding: 58vh 12px 80px; }
+  .ar .col { width: 100%; max-height: none; margin-top: 0; }
+  .ar .scoreboard { top: 64px; }
+  .player { bottom: auto; top: calc(58vh - 70px); }
+  .standings .scroll, .matches .scroll { max-height: 320px; }
+}
