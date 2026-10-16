@@ -2,7 +2,7 @@
 # Pretty URLs (/hangar) + proxy of /api/* and /live.json to the live origin.
 param(
   [int]$Port = 4173,
-  [string]$Origin = 'https://mechafolio.xyz'
+  [string]$Origin = 'https://mechafolio.vip'
 )
 
 $ErrorActionPreference = 'Stop'

@@ -3,9 +3,9 @@
 export const SITE = {
   name: 'MECHAFOLIO',
   ticker: '$FOLIO',
-  domain: 'mechafolio.xyz',
+  domain: 'mechafolio.vip',
   x: 'https://x.com/mechafolio_rh',
-  xHandle: '@mechafolio',
+  xHandle: '@Mechafolio_rh',
   launchUtc: null,            // diisi saat jadwal launch pasti, mis. '2026-10-20T17:00:00Z'
   ca: '0x5fd9547b0a9a75b8a3b0b60a4714974cfea5e411',
 };
