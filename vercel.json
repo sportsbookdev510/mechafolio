@@ -6,6 +6,13 @@
   ],
   "headers": [
     {
+      "source": "/logo.png",
+      "headers": [
+        { "key": "Content-Type", "value": "image/png" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    },
+    {
       "source": "/js/(.*)",
       "headers": [{ "key": "Content-Type", "value": "text/javascript; charset=utf-8" }]
     },

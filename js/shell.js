@@ -22,7 +22,7 @@ const PAGES = [['hangar', 'Hangar'], ['arena', 'Arena'], ['yard', 'Yard'], ['led
 export function mountShell(page) {
   document.body.insertAdjacentHTML('afterbegin', `
   <header class="top">
-    <a class="brand" href="/" aria-label="MECHAFOLIO home"><svg class="brand-mark"><use href="/assets/brand/symbols.svg#mark"/></svg><span class="brand-word">MECHAFOLIO</span></a>
+    <a class="brand" href="/" aria-label="MECHAFOLIO home"><img class="brand-mark" src="/logo.png" alt=""><span class="brand-word">MECHAFOLIO</span></a>
     <nav class="pages" aria-label="Pages">${PAGES.map(([id, n]) => `<a href="/${id}"${id === page ? ' aria-current="page"' : ''}>${n}</a>`).join('')}</nav>
     <div class="status" aria-label="Live status">
       <div class="st"><span class="k"><i class="led" id="led"></i>Chain</span><span class="v mono" id="stBlock">—</span></div>

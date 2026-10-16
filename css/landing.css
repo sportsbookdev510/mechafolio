@@ -117,7 +117,7 @@ body[data-theme="broadcast"] .up { color: #8dffb8; } body[data-theme="broadcast"
 .boot-term { position: relative; width: min(440px, 86vw); color: #dfeaff; transition: opacity .35s, transform .35s; }
 .boot-head { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; font: 700 15px/1 var(--f-display); letter-spacing: .2em; }
 .boot-head em { font: 400 12px/1 var(--f-mono); letter-spacing: 0; color: #7f93b6; font-style: normal; margin-left: auto; }
-.boot-mark { width: 26px; height: 26px; color: #fff; }
+.boot-mark { width: 26px; height: 26px; color: #fff; object-fit: contain; display: block; border-radius: 4px; }
 .boot-lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; font: 400 13px/1 var(--f-mono); }
 .boot-lines li { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; color: #8ea3c6; }
 .boot-lines li i { height: 1px; background: repeating-linear-gradient(90deg, #33435f 0 3px, transparent 3px 6px); }
@@ -136,7 +136,7 @@ body[data-theme="broadcast"] .up { color: #8dffb8; } body[data-theme="broadcast"
 }
 body[data-theme="broadcast"] .top { background: #0b1220; }
 .top .brand { color: var(--hud-text); }
-.top .brand-mark { color: #fff; width: 30px; height: 30px; }
+.top .brand-mark { color: #fff; width: 30px; height: 30px; object-fit: contain; display: block; border-radius: 5px; }
 body[data-theme="blueprint"] .top .brand-mark { color: #0b1220; }
 .sectors { display: flex; height: 100%; margin-left: 6px; }
 .sectors button {
