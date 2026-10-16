@@ -55,7 +55,7 @@ function render() {
     : '<tr><td colspan="4" class="empty">The first epoch closes at 00:00 UTC after launch.</td></tr>';
 
   const C = L.contracts || {};
-  $('#contracts').innerHTML = [['$FOLIO token', C.folio], ['Pons curve', C.curve], ['FolioEngine', C.engine], ['FolioDistributor', C.distributor]]
+  $('#contracts').innerHTML = [['$FOLIO token', C.folio], ['Uniswap pool', C.curve], ['FolioEngine', C.engine], ['FolioDistributor', C.distributor]]
     .map(([n, a]) => `<div><span class="k">${n}</span>${a ? ex('address', a, a) : '<span class="dim mono">at launch</span>'}</div>`).join('');
 }
 

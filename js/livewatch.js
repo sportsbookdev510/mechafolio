@@ -35,7 +35,7 @@ onLive(({ ca, launchUtc }) => {
   document.querySelectorAll('[data-ca-short]').forEach(el => { el.textContent = ca ? shortCa(ca) : 'Soon'; });
   document.querySelectorAll('[data-ca-state]').forEach(el => { el.dataset.caState = ca ? 'live' : 'pre'; });
   document.querySelectorAll('[data-buy]').forEach(el => {
-    if (ca) { el.href = CHAIN.pons(ca); el.removeAttribute('aria-disabled'); }
+    if (ca) { el.href = CHAIN.uniswap(ca); el.removeAttribute('aria-disabled'); }
     else { el.removeAttribute('href'); el.setAttribute('aria-disabled', 'true'); }
   });
 });

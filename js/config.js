@@ -15,7 +15,7 @@ export const CHAIN = {
   name: 'Robinhood Chain',
   rpc: ['https://robinhood.api.pocket.network', 'https://robinhood.drpc.org', 'https://robinhood-rpc.publicnode.com'],
   explorer: 'https://robinhoodchain.blockscout.com',
-  pons: ca => `https://www.ponsfamily.com/launchpad/${String(ca).toLowerCase()}`,
+  uniswap: ca => `https://app.uniswap.org/swap?chain=robinhood&inputCurrency=NATIVE&outputCurrency=${String(ca).toLowerCase()}`,
 };
 
 // 8 slot robot = 8 saham token asli di Robinhood Chain (alamat dicek 15 Okt 2026 via GeckoTerminal).

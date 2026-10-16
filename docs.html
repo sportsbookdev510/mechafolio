@@ -64,8 +64,8 @@
       <section id="fees">
         <h2>Fees → stocks</h2>
         <ol>
-          <li>Every $FOLIO buy and sell on Pons pays a <b>3% creator tax</b>. The creator share of Pons' own 1% base fee comes along with it. Both go to the <b>FolioEngine</b> contract, not to a team wallet.</li>
-          <li>About once an hour a keeper calls <code>harvest()</code>. The engine pulls the fees from Pons, sends <b>5% to operations</b> (capped at 10% in the contract), and swaps the rest on Uniswap v3 into the eight stocks.</li>
+          <li>Every $FOLIO buy and sell on Uniswap pays a <b>3% fee</b>. It goes to the <b>FolioEngine</b> contract, not to a team wallet.</li>
+          <li>About once an hour a keeper calls <code>harvest()</code>. The engine collects those fees, sends <b>5% to operations</b> (capped at 10% in the contract), and swaps the rest on Uniswap v3 into the eight stocks.</li>
           <li>The stocks go straight from the pool to the <b>FolioDistributor</b> contract. They never pass through a team wallet.</li>
         </ol>
         <p>If one stock can't be bought at a fair price (or its token is paused), that slot is skipped and its ETH waits for the next harvest. The other seven are still bought.</p>
@@ -114,7 +114,7 @@
         <h2>Risks</h2>
         <ul>
           <li><b>$FOLIO is a memecoin</b> with no intrinsic value. Its price can fall to zero, and the stocks it buys depend on trading activity that can dry up.</li>
-          <li><b>Stock tokens are third-party assets.</b> Their issuer can pause them, block addresses or change them under its own terms. MECHAFOLIO is not affiliated with Robinhood, Pons, Uniswap or any company named here.</li>
+          <li><b>Stock tokens are third-party assets.</b> Their issuer can pause them, block addresses or change them under its own terms. MECHAFOLIO is not affiliated with Robinhood, Uniswap or any company named here.</li>
           <li><b>Smart contracts can have bugs.</b> The contracts are tested against a copy of the live chain, but they are not audited by a third party.</li>
           <li><b>Nothing here is financial advice</b> or an offer of securities. Check that holding these tokens is allowed where you live.</li>
         </ul>
