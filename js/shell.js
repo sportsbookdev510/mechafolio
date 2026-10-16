@@ -30,7 +30,7 @@ export function mountShell(page) {
       <div class="st"><span class="k">Next duel</span><span class="v mono" id="stDuel">--:--:--</span></div>
     </div>
     <div class="actions">
-      <button class="ca-chip" data-copy-ca data-ca-state="pre" title="Contract address"><span class="ca-k">CA</span><span class="ca-v" data-ca-short>Soon</span><svg class="ic"><use href="/assets/brand/symbols.svg#i-copy"/></svg></button>
+      <button class="ca-chip" data-copy-ca data-ca-state="pre" title="Contract address"><span class="ca-k">CA</span><span class="ca-v" data-ca-short>0x5fd9547b0a9a75b8a3b0b60a4714974cfea5e411</span><svg class="ic"><use href="/assets/brand/symbols.svg#i-copy"/></svg></button>
       <a class="icon-btn" href="${SITE.x}" target="_blank" rel="noopener" aria-label="X"><svg><use href="/assets/brand/symbols.svg#i-x"/></svg></a>
       <button class="btn btn-accent btn-sm wallet-btn" id="walletBtn">Connect</button>
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu"><span>Menu</span><i></i></button>

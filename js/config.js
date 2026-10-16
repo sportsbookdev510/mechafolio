@@ -7,7 +7,7 @@ export const SITE = {
   x: 'https://x.com/mechafolio_rh',
   xHandle: '@mechafolio',
   launchUtc: null,            // diisi saat jadwal launch pasti, mis. '2026-10-20T17:00:00Z'
-  ca: null,                   // diisi lewat live.json saat launch
+  ca: '0x5fd9547b0a9a75b8a3b0b60a4714974cfea5e411',
 };
 
 export const CHAIN = {

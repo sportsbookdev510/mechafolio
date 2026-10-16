@@ -14,7 +14,7 @@ async function poll(first) {
     const r = await fetch('/live.json?t=' + Date.now(), { cache: 'no-store' });
     if (!r.ok) return;
     const j = await r.json();
-    const ca = j.contractAddress || null;
+    const ca = j.contractAddress || SITE.ca || null;
     const changed = !first && (ca !== current.ca || (j.version && j.version !== 'dev' && j.version !== buildMeta));
     if (changed) {
       const k = 'mf.reload.' + (ca || '') + (j.version || '');
